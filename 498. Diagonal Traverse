@@ -1,0 +1,61 @@
+class Solution {
+public:
+    vector<int> findDiagonalOrder(vector<vector<int>>& matrix) {
+         vector<int> res;
+        if (matrix.size()==0)
+            return res;
+        int row=matrix.size();
+        int column=matrix[0].size();
+        res.resize(row*column);
+       
+
+      
+        
+        int dir=1;
+        int idx=0;
+        int i=0;
+        int j=0;
+        for(int idx=0;idx<row*column;idx++)
+        {
+            res[idx]=matrix[i][j];
+            cout<<idx<<endl;
+            if(dir==1)
+            {
+                if(j==column-1)
+                {
+                    i++;
+                    dir=-1;}
+                
+                else if(i==0)
+                {
+                    j++;
+                    dir=-1;}
+                 
+                else{
+                    i--;
+                    j++;}
+            }
+            else
+            {
+                if(i==row-1){
+                    j++;
+                    dir=1;}
+                
+                
+                else if(j==0)
+                {
+                    i++;
+                    dir=1;
+                }
+                
+                else
+                {
+                    i++;
+                    j--;
+                }
+                
+            }
+        }
+            return res;
+    }
+};
