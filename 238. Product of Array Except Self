@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        vector<int> res(nums.size());
+        
+        if(nums.size()==0)
+            return res;
+        int RunningProduct=1;
+        res[0]=1;
+        
+        for(int i=1;i<nums.size();i++)
+        {
+            RunningProduct*=nums[i-1];
+            res[i]=RunningProduct;
+        }
+        RunningProduct=1;
+        for(int j=nums.size()-2;j>=0;j--)
+        {
+           RunningProduct *=nums[j+1];
+            res[j]*=RunningProduct;
+            
+        }
+        return res;
+    }
+};
