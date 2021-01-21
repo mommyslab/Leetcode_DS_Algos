@@ -14,7 +14,7 @@ public:
     }
     MyHashSet() {
         parentSize=1000;
-        NestedSize=1000;
+        NestedSize=1001;
         HashSet.resize(parentSize);
     }
     
