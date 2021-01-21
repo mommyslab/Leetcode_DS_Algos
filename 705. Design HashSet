@@ -1,0 +1,64 @@
+class MyHashSet {
+public:
+    /** Initialize your data structure here. */
+    vector<vector<int>> HashSet;
+    int parentSize;
+    int NestedSize;
+    int parentPos(int key)
+    {
+        return key%parentSize;
+    }
+    int NestedPos(int key)
+    {
+       return key/NestedSize;
+    }
+    MyHashSet() {
+        parentSize=1000;
+        NestedSize=1000;
+        HashSet.resize(parentSize);
+    }
+    
+    void add(int key) {
+         int parPos=parentPos( key);
+         int NesPos=NestedPos( key);
+        
+        if(HashSet[parPos].size()==0)
+           HashSet[parPos].resize(NestedSize,-1); 
+       
+        HashSet[parPos][NesPos]=key;
+        
+    }
+    
+    void remove(int key) {
+         int parPos=parentPos( key);
+        if(HashSet[parPos].size()==0)
+            return;
+         int NesPos=NestedPos( key);
+          HashSet[parPos][NesPos]=-1;
+
+        
+    }
+    
+    /** Returns true if this set contains the specified element */
+    bool contains(int key) {
+        int parPos=parentPos( key);
+        if(HashSet[parPos].size()==0)
+            return false;
+        
+          int NesPos=NestedPos( key);
+        if(HashSet[parPos][NesPos]==-1)
+            return false;
+        else
+             return true;
+        
+        
+    }
+};
+
+/**
+ * Your MyHashSet object will be instantiated and called as such:
+ * MyHashSet* obj = new MyHashSet();
+ * obj->add(key);
+ * obj->remove(key);
+ * bool param_3 = obj->contains(key);
+ */
