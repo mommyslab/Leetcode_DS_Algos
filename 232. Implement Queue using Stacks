@@ -15,7 +15,7 @@ public:
     /** Removes the element from in front of queue and returns that element. */
     int pop() {
        int res= peek();
-        insert.pop();
+        extract.pop();
         return res;
     }
     
