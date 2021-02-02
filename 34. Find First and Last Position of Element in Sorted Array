@@ -1,0 +1,63 @@
+class Solution {
+public:
+    int findFirstpos(vector<int>& nums, int target)
+    {
+        int low=0;
+        int high=nums.size()-1;
+            while(low<=high)
+            {
+               int mid=low+(high-low);
+                if(nums[mid]==target)
+                {
+                    if(mid==0 || nums[mid]>nums[mid-1])
+                        return mid;
+                    else
+                        high=mid-1;
+                }
+                else if(nums[mid]<target)
+                    low=mid+1;
+                else
+                    high=mid-1;
+            }
+        return -1;
+    }
+    int findLastpos(vector<int>& nums, int target)
+    {
+        int low=0;
+        int high=nums.size()-1;
+            while(low<=high)
+            {
+                int mid=low+(high-low);
+                if(nums[mid]==target)
+                {
+                    if(mid==nums.size()-1 || nums[mid+1]>nums[mid])
+                        return mid;
+                    else
+                        low=mid+1;
+                }
+                else if(nums[mid]<target)
+                    low=mid+1;
+                else
+                    high=mid-1;
+            }
+        return -1;
+    }
+    vector<int> searchRange(vector<int>& nums, int target) {
+        int size=nums.size();
+        if(nums.size()==0)
+        {
+             vector<int> res= {-1,-1};
+            return res;
+        }
+        if(nums[0]>target || nums[size-1]<target)
+           {
+             vector<int> res= {-1,-1};
+            return res;
+        }
+        int firPos= findFirstpos(nums,target);
+        int LastPos=findLastpos(nums,target);
+        vector<int> res={firPos,LastPos};
+        return res;
+            
+    }
+};
