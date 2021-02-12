@@ -1,37 +1,47 @@
 class MinStack {
 public:
-    stack<int> insert;
-    stack<int> keepMin;
+    stack<int> store;
     int mini=INT_MAX;
+    
     /** initialize your data structure here. */
     MinStack() {
         
     }
     
     void push(int x) {
-        insert.push(x);
-        mini=min(x,mini);
-        keepMin.push(mini);
+      
+            if(x<=mini )
+            {
+                store.push(mini);
+                store.push(x);
+                mini=x;
+            }
+            else
+                store.push(x);
+            
+                
         
+        cout<< "mini "<< mini <<"x "<<store.top()<<endl;
     }
     
     void pop() {
-   
-        insert.pop();
-        keepMin.pop();
-         mini= keepMin.top();
-        
+        int res= store.top();
+            store.pop();
+        cout<<"1 "<<res<<endl;
+        if(res==mini )
+        {
+            mini=store.top();
+            store.pop();
+        }
+        cout<<"2 "<<mini<<endl;
     }
     
     int top() {
-        return insert.top();
-         
+        return store.top();
     }
     
     int getMin() {
         return mini;
-        
-            
     }
 };
 
