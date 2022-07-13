@@ -1,0 +1,32 @@
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        if(size(s)!=size(t))
+            return false;
+        
+        vector<int> schar (256,-1);
+        vector<int> tchar (256,-1);
+        
+        for(int i=0;i<s.size();i++)
+        {
+            if(schar[s[i]]==-1)
+            {
+                schar[s[i]]=t[i];
+            }
+            else if(schar[s[i]]!=t[i])
+                return false;
+        }
+         for(int i=0;i<t.size();i++)
+        {
+            if(tchar[t[i]]==-1)
+            {
+                tchar[t[i]]=s[i];
+            }
+            else if(tchar[t[i]]!=s[i])
+                return false;
+        }
+        
+        
+        return true;
+    }
+};
