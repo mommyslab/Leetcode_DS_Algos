@@ -1,0 +1,35 @@
+class Solution {
+public:
+    
+    bool isAnagram(string s, string p)
+    {
+        
+        vector<int> letters(26,0);
+        for(int i=0;i<p.size();i++)
+            letters[p[i]-'a']++;
+        for(int i=0;i<p.size();i++)
+            letters[s[i]-'a']--;   
+            
+        for(int i=0;i<26;i++)
+            {
+                if(letters[i]!=0)
+                    return false;
+            }
+          return true;  
+    }
+    vector<int> findAnagrams(string s, string p) {
+        vector<int> result;
+        int size=p.size();
+        if(size>s.size())
+            return result;
+        
+        for(int i=0;i<=s.size()-size;i++)
+        {
+            string subs=s.substr(i,size);
+            bool flag=isAnagram(subs,p);
+            if(flag)
+                result.push_back(i);
+        }
+        return result;
+    }
+};
